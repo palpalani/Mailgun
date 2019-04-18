@@ -3,13 +3,13 @@
 namespace Bogardo\Mailgun\Mail;
 
 use Illuminate\Contracts\Config\Repository as Config;
-use Mailgun\Messages\MessageBuilder;
+use Mailgun\Message\MessageBuilder;
 
 class Message
 {
 
     /**
-     * @var \Mailgun\Messages\MessageBuilder
+     * @var \Mailgun\Message\MessageBuilder
      */
     protected $messageBuilder;
 
@@ -21,7 +21,7 @@ class Message
     /**
      * Message constructor.
      *
-     * @param \Mailgun\Messages\MessageBuilder        $messageBuilder
+     * @param \Mailgun\Message\MessageBuilder         $messageBuilder
      * @param \Illuminate\Contracts\Config\Repository $config
      */
     public function __construct(MessageBuilder $messageBuilder, Config $config)
@@ -351,7 +351,7 @@ class Message
     }
 
     /**
-     * @return \Mailgun\Messages\MessageBuilder
+     * @return \Mailgun\Message\MessageBuilder
      */
     public function builder()
     {

@@ -49,8 +49,8 @@ class MailgunServiceProvider extends ServiceProvider
                 $clientAdapter,
                 $config->get('mailgun.api.endpoint')
             );
-            $mg->setApiVersion($config->get('mailgun.api.version'));
-            $mg->setSslEnabled($config->get('mailgun.api.ssl', true));
+            //$mg->setApiVersion($config->get('mailgun.api.version'));
+            //$mg->setSslEnabled($config->get('mailgun.api.ssl', true));
 
             return new Service($mg, $this->app->make('view'), $config);
         });

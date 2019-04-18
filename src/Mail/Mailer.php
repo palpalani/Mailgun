@@ -8,6 +8,7 @@ use Closure;
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\View\Factory as View;
 use Mailgun\Mailgun;
+use Mailgun\Message\MessageBuilder;
 
 class Mailer
 {
@@ -52,22 +53,25 @@ class Mailer
      * @param \Closure     $callback
      * @param null         $message
      *
-     * @return \Bogardo\Mailgun\Http\Response
+     * @return \Mailgun\Model\Message\SendResponse
      */
     public function send($view, array $data, Closure $callback, $message = null)
     {
-        $this->message = $message ?: new Message($this->mailgun->MessageBuilder(), $this->config);
+        $this->message = $message ?: new Message(new MessageBuilder(), $this->config);
 
         $this->callMessageBuilder($callback, $this->message);
         $this->renderBody($view, $data);
 
         $message = $this->message->getMessage();
-        $files = $this->message->getFiles();
+        //$files = $this->message->getFiles();
 
         $domain = $this->config->get('mailgun.domain');
-        $response = new Response($this->mailgun->post("{$domain}/messages", $message, $files));
+        //$response = new Response($this->mailgun->post("{$domain}/messages", $message, $files));
+        //return $response;
+        $apiKey = $this->config->get('mailgun.api_key');
+        $mg = $this->mailgun::create($apiKey);
 
-        return $response;
+        return $mg->messages()->send($domain, $message);
     }
 
     /**

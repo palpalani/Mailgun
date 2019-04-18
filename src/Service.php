@@ -52,7 +52,7 @@ class Service implements MailgunContract
      * @param array    $data
      * @param \Closure $callback
      *
-     * @return \Bogardo\Mailgun\Http\Response
+     * @return \Mailgun\Model\Message\SendResponse
      */
     public function send($view, array $data, Closure $callback)
     {
@@ -63,7 +63,7 @@ class Service implements MailgunContract
      * @param string   $message
      * @param \Closure $callback
      *
-     * @return \Bogardo\Mailgun\Http\Response
+     * @return \Mailgun\Model\Message\SendResponse
      */
     public function raw($message, Closure $callback)
     {
