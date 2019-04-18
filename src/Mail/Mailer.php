@@ -48,6 +48,7 @@ class Mailer
 
 
     /**
+     * @param string       $domain
      * @param string|array $view
      * @param array        $data
      * @param \Closure     $callback
@@ -55,7 +56,7 @@ class Mailer
      *
      * @return \Mailgun\Model\Message\SendResponse
      */
-    public function send($view, array $data, Closure $callback, $message = null)
+    public function send(string $domain, $view, array $data, Closure $callback, $message = null)
     {
         $this->message = $message ?: new Message(new MessageBuilder(), $this->config);
 
@@ -65,7 +66,7 @@ class Mailer
         $message = $this->message->getMessage();
         //$files = $this->message->getFiles();
 
-        $domain = $this->config->get('mailgun.domain');
+        //$domain = $this->config->get('mailgun.domain');
         //$response = new Response($this->mailgun->post("{$domain}/messages", $message, $files));
         //return $response;
         $apiKey = $this->config->get('mailgun.api_key');

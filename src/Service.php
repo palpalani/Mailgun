@@ -48,15 +48,16 @@ class Service implements MailgunContract
     }
 
     /**
-     * @param string   $view
+     * @param string        $domain
+     * @param string|array  $view
      * @param array    $data
      * @param \Closure $callback
      *
      * @return \Mailgun\Model\Message\SendResponse
      */
-    public function send($view, array $data, Closure $callback)
+    public function send(string $domain, $view, array $data, Closure $callback)
     {
-        return $this->mailer->send($view, $data, $callback);
+        return $this->mailer->send($domain, $view, $data, $callback);
     }
 
     /**
