@@ -26,6 +26,7 @@ interface Mailgun
     public function raw($message, Closure $callback);
 
     /**
+     * @param string           $domain
      * @param int|string|array $time
      * @param string|array     $view
      * @param array            $data
@@ -33,5 +34,5 @@ interface Mailgun
      *
      * @return \Bogardo\Mailgun\Http\Response
      */
-    public function later($time, $view, array $data, Closure $callback);
+    public function later(string $domain, $time, $view, array $data, Closure $callback);
 }

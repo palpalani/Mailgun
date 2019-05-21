@@ -76,20 +76,21 @@ class Mailer
     }
 
     /**
+     * @param string                     $domain
      * @param int|array|\DateTime|Carbon $time
      * @param string|array               $view
      * @param array                      $data
      * @param \Closure                   $callback
      *
-     * @return \Bogardo\Mailgun\Http\Response
+     * @return \Mailgun\Model\Message\SendResponse
      */
-    public function later($time, $view, array $data, Closure $callback)
+    public function later(string $domain, $time, $view, array $data, Closure $callback)
     {
-        $message = new Message($this->mailgun->MessageBuilder(), $this->config);
+        $message = new Message(new MessageBuilder, $this->config);
         $message->builder()
                 ->setDeliveryTime($this->parseTime($time), $this->config->get('app.timezone', 'UTC'));
 
-        return $this->send($view, $data, $callback, $message);
+        return $this->send($domain, $view, $data, $callback, $message);
     }
 
     /**

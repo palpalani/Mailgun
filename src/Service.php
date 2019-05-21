@@ -72,6 +72,7 @@ class Service implements MailgunContract
     }
 
     /**
+     * @param string    $domain
      * @param int|array $time
      * @param string    $view
      * @param array     $data
@@ -79,9 +80,9 @@ class Service implements MailgunContract
      *
      * @return \Bogardo\Mailgun\Http\Response
      */
-    public function later($time, $view, array $data, Closure $callback)
+    public function later(string $domain, $time, $view, array $data, Closure $callback)
     {
-        return $this->mailer->later($time, $view, $data, $callback);
+        return $this->mailer->later($domain, $time, $view, $data, $callback);
     }
 
     /**
