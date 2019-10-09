@@ -5,6 +5,7 @@ namespace Bogardo\Mailgun;
 use Bogardo\Mailgun\Contracts\Mailgun as MailgunContract;
 use Illuminate\Support\ServiceProvider;
 use Mailgun\Mailgun as MailgunApi;
+use Mailgun\HttpClient\HttpClientConfigurator;
 
 class MailgunServiceProvider extends ServiceProvider
 {
