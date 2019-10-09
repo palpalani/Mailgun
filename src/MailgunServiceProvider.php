@@ -42,6 +42,7 @@ class MailgunServiceProvider extends ServiceProvider
          * Register main Mailgun service
          */
         $this->app->bind('mailgun', function () use ($config) {
+            /*
             $clientAdapter = $this->app->make('mailgun.client');
 
             $mg = new MailgunApi(
@@ -51,6 +52,12 @@ class MailgunServiceProvider extends ServiceProvider
             );
             //$mg->setApiVersion($config->get('mailgun.api.version'));
             //$mg->setSslEnabled($config->get('mailgun.api.ssl', true));
+            */
+            $configurator = new HttpClientConfigurator();
+            $configurator->setApiKey($config->get('mailgun.api_key'));
+            //$configurator->setEndpoint('http://bin.mailgun.net/a4b6662f');
+            //$configurator->setDebug(true);
+            $mg = new MailgunApi($configurator);
 
             return new Service($mg, $this->app->make('view'), $config);
         });
