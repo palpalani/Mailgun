@@ -63,6 +63,13 @@
         "php-http/guzzle6-adapter": "Use Guzzle 6 as your Mailgun HTTP client",
         "php-http/guzzle5-adapter": "Use Guzzle 5 as your Mailgun HTTP client"
     },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
@@ -72,5 +79,7 @@
                 "Mailgun": "Bogardo\\Mailgun\\Facades\\Mailgun"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

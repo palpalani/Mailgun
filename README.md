@@ -874,7 +874,18 @@ stdClass Object
 )
 ```
 
-<br /><br />
+## Contributing
+
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+
+## Security Vulnerabilities
+
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+
+## Credits
+
+- [palPalani](https://github.com/palpalani)
+- [All Contributors](../../contributors)
 
 ## License
 
