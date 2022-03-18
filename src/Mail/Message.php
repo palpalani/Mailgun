@@ -7,7 +7,6 @@ use Mailgun\Message\MessageBuilder;
 
 class Message
 {
-
     /**
      * @var \Mailgun\Message\MessageBuilder
      */
@@ -68,7 +67,7 @@ class Message
                 $this->messageBuilder->addToRecipient($email, ['full_name' => $name]);
             }
         } else {
-            if (!empty($variables)) {
+            if (! empty($variables)) {
                 $this->variables[$address] = $variables;
             }
             $this->messageBuilder->addToRecipient($address, ['full_name' => $name]);
@@ -88,7 +87,7 @@ class Message
      */
     public function cc($address, $name = "", array $variables = [])
     {
-        if (!empty($variables)) {
+        if (! empty($variables)) {
             $this->variables[$address] = $variables;
         }
         $this->messageBuilder->addCcRecipient($address, ['full_name' => $name]);
@@ -107,7 +106,7 @@ class Message
      */
     public function bcc($address, $name = "", array $variables = [])
     {
-        if (!empty($variables)) {
+        if (! empty($variables)) {
             $this->variables[$address] = $variables;
         }
         $this->messageBuilder->addBccRecipient($address, ['full_name' => $name]);
@@ -367,7 +366,7 @@ class Message
     {
         $message = $this->messageBuilder->getMessage();
 
-        if (!isset($message['from'])) {
+        if (! isset($message['from'])) {
             $this->setConfigFrom();
             $message = $this->messageBuilder->getMessage();
         }

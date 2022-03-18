@@ -6,7 +6,6 @@ use Mailgun\Mailgun;
 
 class Validator
 {
-
     /**
      * @var \Mailgun\Mailgun
      */
@@ -44,7 +43,7 @@ class Validator
     {
         return $this->mailgun->get('address/validate', [
             'address' => $address,
-            'mailbox_verification' => $mailboxVerification
+            'mailbox_verification' => $mailboxVerification,
         ])->http_response_body;
     }
 

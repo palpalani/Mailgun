@@ -5,7 +5,6 @@ use Orchestra\Testbench\TestCase;
 
 class MailgunTestCase extends TestCase
 {
-
     /**
      * @var Mockery\MockInterface
      */
@@ -18,7 +17,7 @@ class MailgunTestCase extends TestCase
     {
         parent::setUp();
 
-        $this->app->bind('mailgun.client', function(){
+        $this->app->bind('mailgun.client', function () {
             return new Http\Mock\Client();
         });
 
@@ -55,7 +54,6 @@ class MailgunTestCase extends TestCase
         $app['config']->set('mailgun.domain', 'test.domain.com');
         $app['config']->set('mailgun.from.address', 'from@example.com');
         //$app['config']->set('mailgun.from.name', 'From User');
-
     }
 
     /**
@@ -79,9 +77,9 @@ class MailgunTestCase extends TestCase
         return json_decode(json_encode([
             'http_response_body' => [
                 'message' => 'success',
-                'id' => '123'
+                'id' => '123',
             ],
-            'http_response_code' => 200
+            'http_response_code' => 200,
         ]));
     }
 
@@ -90,10 +88,9 @@ class MailgunTestCase extends TestCase
         return json_decode(json_encode([
             'http_response_body' => [
                 'message' => 'error',
-                'id' => '234'
+                'id' => '234',
             ],
-            'http_response_code' => 400
+            'http_response_code' => 400,
         ]));
     }
-
 }

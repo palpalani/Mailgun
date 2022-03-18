@@ -1,10 +1,8 @@
 <?php
 
-use Carbon\Carbon;
 
 class ValidationServiceTest extends MailgunTestCase
 {
-
     /**
      * Setup the test environment.
      */
@@ -25,16 +23,14 @@ class ValidationServiceTest extends MailgunTestCase
         parent::getEnvironmentSetUp($app);
     }
 
-
     /** @test */
     public function it_validates_an_email_address_and_returns_a_positive_response_for_a_valid_address()
     {
-
         $args = [
             'address/validate',
             [
-                'address' => 'email@example.com'
-            ]
+                'address' => 'email@example.com',
+            ],
         ];
 
         $this->mailgunApi->shouldReceive('get')->once()->withArgs($args)->andReturn(
@@ -46,10 +42,10 @@ class ValidationServiceTest extends MailgunTestCase
                     'parts' => [
                         'display_name' => null,
                         'domain' => 'example.com',
-                        'local_part' => 'email'
-                    ]
+                        'local_part' => 'email',
+                    ],
                 ],
-                'http_response_code' => 200
+                'http_response_code' => 200,
             ]))
         );
 
@@ -61,12 +57,11 @@ class ValidationServiceTest extends MailgunTestCase
     /** @test */
     public function it_validates_an_email_address_and_returns_a_negative_response_for_an_invalid_address()
     {
-
         $args = [
             'address/validate',
             [
-                'address' => 'emailexample.com'
-            ]
+                'address' => 'emailexample.com',
+            ],
         ];
 
         $this->mailgunApi->shouldReceive('get')->once()->withArgs($args)->andReturn(
@@ -78,10 +73,10 @@ class ValidationServiceTest extends MailgunTestCase
                     'parts' => [
                         'display_name' => null,
                         'domain' => null,
-                        'local_part' => null
-                    ]
+                        'local_part' => null,
+                    ],
                 ],
-                'http_response_code' => 200
+                'http_response_code' => 200,
             ]))
         );
 
@@ -97,8 +92,8 @@ class ValidationServiceTest extends MailgunTestCase
             "address/parse",
             [
                 'addresses' => 'email@exmple.com,invalid_email.com,weird@extension.beepbep,no@tld,new@tlds.shop',
-                'syntax_only' => 'false'
-            ]
+                'syntax_only' => 'false',
+            ],
         ];
 
         $response = [
@@ -107,21 +102,22 @@ class ValidationServiceTest extends MailgunTestCase
                 'weird@extension.beepbep',
                 'no@tld',
                 'new@tlds.shop',
-                'invalid_email.com'
-            ]
+                'invalid_email.com',
+            ],
         ];
 
         $this->mailgunApi->shouldReceive('get')->once()->withArgs($args)->andReturn(
             json_decode(json_encode([
-                'http_response_body' => $response
-            ])));
+                'http_response_body' => $response,
+            ]))
+        );
 
         $result = Mailgun::validator()->parse([
             'email@exmple.com',
             'invalid_email.com',
             'weird@extension.beepbep',
             'no@tld',
-            'new@tlds.shop'
+            'new@tlds.shop',
         ], false);
 
         $this->assertCount(1, $result->parsed);
@@ -136,5 +132,4 @@ class ValidationServiceTest extends MailgunTestCase
 
         $this->assertTrue(true);
     }
-
 }

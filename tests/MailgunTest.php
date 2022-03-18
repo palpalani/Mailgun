@@ -2,7 +2,6 @@
 
 class MailgunTest extends MailgunTestCase
 {
-
     /** @test */
     public function it_provides_the_mailgun_service()
     {
@@ -10,7 +9,7 @@ class MailgunTest extends MailgunTestCase
         $this->assertEquals([
             'mailgun',
             'mailgun.public',
-            Bogardo\Mailgun\Contracts\Mailgun::class
+            Bogardo\Mailgun\Contracts\Mailgun::class,
         ], $provides);
     }
 

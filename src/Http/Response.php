@@ -6,7 +6,6 @@ use stdClass;
 
 class Response
 {
-
     /**
      * @var int
      */
@@ -52,6 +51,6 @@ class Response
      */
     public function failed()
     {
-        return !$this->success();
+        return ! $this->success();
     }
 }

@@ -11,7 +11,6 @@ use Mailgun\Mailgun;
 
 class Service implements MailgunContract
 {
-
     /**
      * @var \Mailgun\Mailgun
      */
@@ -92,7 +91,6 @@ class Service implements MailgunContract
     {
         return $this->mailgun;
     }
-
 
     /**
      * @return \Mailgun\Lists\OptInHandler

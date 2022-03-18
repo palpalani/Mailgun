@@ -12,7 +12,6 @@ use Mailgun\Message\MessageBuilder;
 
 class Mailer
 {
-
     /**
      * @var \Mailgun\Mailgun
      */
@@ -33,7 +32,6 @@ class Mailer
      */
     protected $message;
 
-
     /**
      * @param \Mailgun\Mailgun                        $mailgun
      * @param \Illuminate\Contracts\View\Factory      $view
@@ -45,7 +43,6 @@ class Mailer
         $this->view = $view;
         $this->config = $config;
     }
-
 
     /**
      * @param string       $domain
@@ -86,7 +83,7 @@ class Mailer
      */
     public function later(string $domain, $time, $view, array $data, Closure $callback)
     {
-        $message = new Message(new MessageBuilder, $this->config);
+        $message = new Message(new MessageBuilder(), $this->config);
         $message->builder()
                 ->setDeliveryTime($this->parseTime($time), $this->config->get('app.timezone', 'UTC'));
 
@@ -228,18 +225,23 @@ class Mailer
             switch ($type) {
                 case 'seconds':
                     $deliveryTime->addSeconds($amount);
+
                     break;
                 case 'minutes':
                     $deliveryTime->addMinutes($amount);
+
                     break;
                 case 'hours':
                     $deliveryTime->addHours($amount);
+
                     break;
                 case 'days':
                     $deliveryTime->addHours($amount * 24);
+
                     break;
                 default:
                     $deliveryTime->addSeconds($amount);
+
                     break;
             }
         }

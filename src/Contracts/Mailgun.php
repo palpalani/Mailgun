@@ -6,7 +6,6 @@ use Closure;
 
 interface Mailgun
 {
-
     /**
      * @param string       $domain
      * @param string|array $view

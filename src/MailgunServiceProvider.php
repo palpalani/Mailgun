@@ -4,12 +4,11 @@ namespace Bogardo\Mailgun;
 
 use Bogardo\Mailgun\Contracts\Mailgun as MailgunContract;
 use Illuminate\Support\ServiceProvider;
-use Mailgun\Mailgun as MailgunApi;
 use Mailgun\HttpClient\HttpClientConfigurator;
+use Mailgun\Mailgun as MailgunApi;
 
 class MailgunServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
